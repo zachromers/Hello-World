@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: green;
+            color: black;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #hello-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 40px;
+            font-size: 24px;
+            cursor: pointer;
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+            border-radius: 8px;
+            z-index: 1000;
+        }
+
+        #hello-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        #clear-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+            border-radius: 8px;
+            z-index: 1000;
+        }
+
+        #clear-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        .hello-text {
+            position: absolute;
+            font-size: 20px;
+            font-weight: bold;
+            color: black;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="hello-btn">Hello World</button>
+    <button id="clear-btn">Clear</button>
+
+    <script>
+        const helloBtn = document.getElementById('hello-btn');
+        const clearBtn = document.getElementById('clear-btn');
+        const body = document.body;
+
+        helloBtn.addEventListener('click', () => {
+            const text = document.createElement('div');
+            text.className = 'hello-text';
+            text.textContent = 'Hello World';
+
+            const maxX = window.innerWidth - 120;
+            const maxY = window.innerHeight - 30;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            text.style.left = randomX + 'px';
+            text.style.top = randomY + 'px';
+
+            body.appendChild(text);
+        });
+
+        clearBtn.addEventListener('click', () => {
+            const texts = document.querySelectorAll('.hello-text');
+            texts.forEach(text => text.remove());
+        });
+    </script>
+</body>
+</html>
